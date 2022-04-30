@@ -1,4 +1,4 @@
-<script type="ts">
+<script>
 	import { goto } from '$app/navigation';
 	import ListErrors from '$lib/ListErrors.svelte';
 	import { ajax } from '$lib/actions';
@@ -29,7 +29,7 @@
 	};
 
 	function enter(node, callback) {
-		function onkeydown(event: { which: number }) {
+		function onkeydown(event) {
 			if (event.which === 13) callback(node);
 		}
 
@@ -49,10 +49,10 @@
 			<div class="col-md-10 offset-md-1 col-xs-12">
 				<ListErrors {errors} />
 
-				<!-- <form
-					use:ajax={{ onsubmit, onresponse }}
+				<form
 					action={slug ? `/article/${slug}.json?_method=put` : `/article.json`}
 					method="post"
+					use:ajax={{ onsubmit, onresponse }}
 				>
 					<fieldset>
 						<fieldset class="form-group">
@@ -104,7 +104,7 @@
 							Publish Article
 						</button>
 					</fieldset>
-				</form> -->
+				</form>
 			</div>
 		</div>
 	</div>

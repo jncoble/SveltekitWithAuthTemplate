@@ -1,4 +1,4 @@
-import * as api from '$lib/api';
+import * as api from '$lib/api.js';
 import { page_size } from '$lib/constants';
 
 export async function get_articles({ url, params, locals }, type) {
@@ -12,8 +12,7 @@ export async function get_articles({ url, params, locals }, type) {
 
 	const { articles, articlesCount } = await api.get(
 		`articles?${q}`,
-		locals.user && locals.user.token,
-		null
+		locals.user && locals.user.token
 	);
 
 	return {

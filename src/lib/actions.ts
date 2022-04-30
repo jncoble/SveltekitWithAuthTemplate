@@ -1,11 +1,10 @@
-// import { noop } from 'svelte/types/runtime/internal';
-let noop = () => {};
+const noop = () => {};
 
-export function ajax(node: any, { onsubmit = noop, onresponse = noop } = {}) {
+export function ajax(node, { onsubmit = noop, onresponse = noop } = {}) {
 	const handler = async (event) => {
 		event.preventDefault();
 		const body = node.method === 'post' || node.method === 'put' ? new FormData(node) : null;
-		// @ts-ignore
+
 		onsubmit(body);
 
 		const response = await fetch(node.action, {
@@ -15,7 +14,7 @@ export function ajax(node: any, { onsubmit = noop, onresponse = noop } = {}) {
 				accept: 'application/json'
 			}
 		});
-		// @ts-ignore
+
 		onresponse(response);
 	};
 

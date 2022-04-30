@@ -7,7 +7,7 @@
 	}
 </script>
 
-<script>
+<script lang="ts">
 	import { session } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import { post } from '$lib/utils';
@@ -43,6 +43,7 @@
 				<p class="text-xs-center">
 					<a href="/login">Have an account?</a>
 				</p>
+
 				<ListErrors {errors} />
 
 				<form on:submit|preventDefault={submit}>

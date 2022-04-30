@@ -1,9 +1,8 @@
-<script lang="ts">
-	import * as api from '$lib/api';
+<script>
+	import * as api from '$lib/api.js';
 
 	export let article;
-
-	export let user: any;
+	export let user;
 
 	async function toggle_favorite() {
 		// optimistic UI
@@ -17,7 +16,7 @@
 
 		({ article } = await (article.favorited
 			? api.post(`articles/${article.slug}/favorite`, null, user && user.token)
-			: api.del(`articles/${article.slug}/favorite`, null, user && user.token)));
+			: api.del(`articles/${article.slug}/favorite`, user && user.token)));
 	}
 </script>
 

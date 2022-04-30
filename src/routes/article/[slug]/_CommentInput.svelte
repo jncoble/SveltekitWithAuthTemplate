@@ -1,37 +1,52 @@
-<script type="ts">
-	import CommentInput from './_CommentInput.svelte';
-	import Comment from './_Comment.svelte';
+<script>
+	import { createEventDispatcher } from 'svelte';
+	import { placeholder } from '$lib/constants';
+	import { ajax } from '$lib/actions';
 
-	export let comments;
 	export let slug;
 	export let user;
+
+	const dispatch = createEventDispatcher();
+
+	let body = '';
+	let submitting = false;
+
+	const onsubmit = () => {
+		submitting = true;
+	};
+
+	const onresponse = async (res) => {
+		if (res.ok) {
+			const comment = await res.json();
+			dispatch('commented', { comment });
+			body = '';
+		} else {
+			// TODO error handling
+		}
+
+		submitting = false;
+	};
 </script>
 
-<div class="col-xs-12 col-md-8 offset-md-2">
-	{#if user}
-		<div>
-			<CommentInput
-				{comments}
-				{slug}
-				{user}
-				on:commented={({ detail }) => (comments = [detail.comment, ...comments])}
-			/>
-		</div>
-	{:else}
-		<p>
-			<a href="/login">Sign in</a>
-			or
-			<a href="/register">sign up</a>
-			to add comments on this article.
-		</p>
-	{/if}
-
-	{#each comments as comment, i (comment.id)}
-		<Comment
-			{comment}
-			{slug}
-			{user}
-			on:deleted={() => (comments = [...comments.slice(0, i), ...comments.slice(i + 1)])}
+<form
+	action="/article/{slug}/comments.json"
+	method="post"
+	class="card comment-form"
+	use:ajax={{ onsubmit, onresponse }}
+>
+	<div class="card-block">
+		<textarea
+			disabled={submitting}
+			class="form-control"
+			name="comment"
+			placeholder="Write a comment..."
+			bind:value={body}
+			rows="3"
 		/>
-	{/each}
-</div>
+	</div>
+
+	<div class="card-footer">
+		<img src={user.image || placeholder} class="comment-author-img" alt={user.username} />
+		<button disabled={submitting} class="btn btn-sm btn-primary" type="submit">Post Comment</button>
+	</div>
+</form>

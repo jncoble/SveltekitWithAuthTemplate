@@ -11,10 +11,11 @@
 	}
 </script>
 
-<script>
+<script lang="ts">
+	// @ts-nocheck
+
 	import Editor from './_Editor.svelte';
-	export let article = { title: '', description: '', body: '', tagList: [] };
+	let article = { title: '', description: '', body: '', tagList: [] };
 </script>
 
-// @ts-ignore
-<!-- <Editor {article} /> -->
+<Editor {article} />

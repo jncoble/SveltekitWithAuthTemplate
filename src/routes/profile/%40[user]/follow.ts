@@ -1,4 +1,4 @@
-import * as api from '$lib/api';
+import * as api from '$lib/api.js';
 
 export async function post({ params, locals }) {
 	return {
@@ -8,6 +8,6 @@ export async function post({ params, locals }) {
 
 export async function del({ params, locals }) {
 	return {
-		body: await api.del(`profiles/${params.user}/follow`, locals.user.token, null)
+		body: await api.del(`profiles/${params.user}/follow`, locals.user.token)
 	};
 }

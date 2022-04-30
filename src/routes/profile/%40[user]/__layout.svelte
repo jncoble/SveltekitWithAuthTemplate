@@ -10,7 +10,7 @@
 	}
 </script>
 
-<script>
+<script lang="ts">
 	import { page, session } from '$app/stores';
 
 	export let profile;

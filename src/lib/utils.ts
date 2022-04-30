@@ -6,5 +6,5 @@ export function post(endpoint, data) {
 		headers: {
 			'Content-Type': 'application/json'
 		}
-	}).then((r: Response) => r.json());
+	}).then((r) => r.json());
 }

@@ -1,4 +1,4 @@
-import * as api from '$lib/api';
+import * as api from '$lib/api.js';
 import { page_size } from '$lib/constants';
 
 export async function get({ url: { searchParams }, locals }) {
@@ -19,8 +19,7 @@ export async function get({ url: { searchParams }, locals }) {
 
 	const { articles, articlesCount } = await api.get(
 		`${endpoint}?${q}`,
-		locals.user && locals.user.token,
-		null
+		locals.user && locals.user.token
 	);
 
 	return {

@@ -11,7 +11,7 @@
 	}
 </script>
 
-<script>
+<script type="ts">
 	import { session } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import { post } from '$lib/utils';

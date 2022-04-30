@@ -1,5 +1,5 @@
 <script context="module">
-	import * as api from '$lib/api';
+	import * as api from '$lib/api.js';
 
 	export async function load({ params, session }) {
 		if (!session.user) {
@@ -14,7 +14,7 @@
 	}
 </script>
 
-<script>
+<script lang="ts">
 	import Editor from './_Editor.svelte';
 
 	export let slug;

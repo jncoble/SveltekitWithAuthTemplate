@@ -1,6 +1,6 @@
-<script>
+<script lang="ts">
 	import { goto } from '$app/navigation';
-	import * as api from '$lib/api';
+	import * as api from '$lib/api.js';
 
 	export let article;
 	export let user;

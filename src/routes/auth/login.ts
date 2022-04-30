@@ -1,4 +1,4 @@
-import * as api from '$lib/api';
+import * as api from '$lib/api.js';
 import { respond } from './_respond';
 
 export async function post({ request }) {
@@ -10,8 +10,7 @@ export async function post({ request }) {
 				email: json.email,
 				password: json.password
 			}
-		},
-		null
+		}
 	);
 
 	return respond(body);

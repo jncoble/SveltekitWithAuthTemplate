@@ -1,9 +1,9 @@
-<script type="ts">
-	let pages;
+<script>
+	export let pages;
 	export let p;
 	export let href;
 
-	let range: number[];
+	let range;
 
 	$: {
 		range = [];
