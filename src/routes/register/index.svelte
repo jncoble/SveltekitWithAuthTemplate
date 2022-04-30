@@ -43,8 +43,6 @@
 				<p class="text-xs-center">
 					<a href="/login">Have an account?</a>
 				</p>
-
-				// @ts-ignore
 				<ListErrors {errors} />
 
 				<form on:submit|preventDefault={submit}>

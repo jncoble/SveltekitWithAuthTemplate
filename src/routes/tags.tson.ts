@@ -1,7 +1,7 @@
 import * as api from '$lib/api';
 
 export async function get() {
-	const { tags } = await api.get('tags');
+	const { tags } = await api.get('tags', data: '', null);
 
 	// The Conduit API doesn't set a cache-control header on
 	// this resource, but it doesn't change frequently enough
